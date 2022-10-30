@@ -1,4 +1,6 @@
 <?php
 
+const STATUS_CASE_IS_PROCESSING = 0;
+const STATUS_CASE_IS_SUCCESS = 1;
 
 ?>

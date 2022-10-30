@@ -69,16 +69,8 @@ if (isset($_SESSION['token'])) {
                             <div class="form-group">
                                 <select class="form-control select2" name="rank" style="width: 100%;">
                                     <option selected="selected" value="0">-- กรุณาเลือกตำแหน่ง --</option>
-
-                                    <?php
-                                    $post = $data->findAllRank();
-                                    foreach ($post as $result) {
-                                        ?>
-                                        <option value="<?php echo $result['id'] ?>"><?php echo $result['rank'] ?></option>
-                                        <?php
-                                    }
-
-                                    ?>
+                                    <option value="1">ช่างโทรศัพท์อาวุโส ฯ</option>
+                                    <option value="2">ช่างโทรศัพท์ ฯ</option>
                                 </select>
                             </div>
 

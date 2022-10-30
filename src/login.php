@@ -11,8 +11,6 @@ if (isset($_SESSION['token'])) {
     include('includes/topbar.php');
     include_once('config/function.php');
 
-//session_start();
-
     $data = new DB_con();
 
     if (isset($_POST['login'])) {

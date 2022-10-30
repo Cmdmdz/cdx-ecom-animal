@@ -12,26 +12,28 @@ if (isset($_SESSION['token'])) {
 
     <?php
     include_once('config/function.php');
-
+//
     $data = new DB_con();
-    $contact_id = $data->generateRandomString(10);
+//    $contact_id = $data->generateRandomString(10);
+//
+//    if (isset($_POST['send'])) {
+//
+//        $firstname = $_POST['firstname'];
+//        $lastname = $_POST['lastname'];
+//        $mobileNumber = $_POST['mobileNumber'];
+//        $detail = $_POST['detail'];
+//        $rank_case_id = $_POST['rank_case_id'];
+//
+//        $sql = $data->createCase($firstname, $lastname, $mobileNumber, $detail, 0, $rank_case_id, $contact_id);
+//
 
-    if (isset($_POST['send'])) {
 
-        $firstname = $_POST['firstname'];
-        $lastname = $_POST['lastname'];
-        $mobileNumber = $_POST['mobileNumber'];
-        $detail = $_POST['detail'];
-        $rank_case_id = $_POST['rank_case_id'];
-
-        $sql = $data->createCase($firstname, $lastname, $mobileNumber, $detail, 0, $rank_case_id, $contact_id);
-
-        if ($sql) {
-            echo "<script>alert('หมายเลขติดตามการแจ้งซ่อม : $contact_id')</script>";
-        } else {
-            echo "<script>alert('Something went wrong Please try again!')</script>";
-        }
-    }
+//        if ($sql) {
+//            echo "<script>alert('หมายเลขติดตามการแจ้งซ่อม : $contact_id')</script>";
+//        } else {
+//            echo "<script>alert('Something went wrong Please try again!')</script>";
+//        }
+//    }
     ?>
 
     <!-- Content Wrapper. Contains page content -->
@@ -66,20 +68,20 @@ if (isset($_SESSION['token'])) {
                         <!-- /.card-header -->
 
                         <div class="card-body ">
-                            <form method="post">
+
                                 <div class="row justify-content-center">
                                     <div class="col-sm-4">
                                         <!-- text input -->
                                         <div class="form-group">
                                             <label>ชื่อ</label>
-                                            <input type="text" name="firstname" required class="form-control">
+                                            <input type="text" name="firstname" id="firstName" required class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <!-- text input -->
                                         <div class="form-group">
                                             <label>นามสกุล</label>
-                                            <input type="text" name="lastname" required class="form-control">
+                                            <input type="text" name="lastname" id="lastName" required class="form-control">
                                         </div>
                                     </div>
 
@@ -90,14 +92,14 @@ if (isset($_SESSION['token'])) {
                                         <!-- text input -->
                                         <div class="form-group">
                                             <label>เบอร์โทรศัพท์</label>
-                                            <input type="text" name="mobileNumber" required class="form-control">
+                                            <input type="text" name="mobileNumber" id="mobileNumber" required class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <!-- select -->
                                         <label>ตำแหน่ง</label>
                                         <div class="form-group">
-                                            <select class="form-control select2" required name="rank_case_id"
+                                            <select class="form-control select2" id="rank_case_id" required name="rank_case_id"
                                                     style="width: 100%;">
                                                 <option selected="selected">-- กรุณาเลือกตำแหน่ง --</option>
 
@@ -120,21 +122,25 @@ if (isset($_SESSION['token'])) {
                                     <div class="col-sm-8">
                                         <div class="form-group">
                                             <label>รายละเอียด</label>
-                                            <textarea class="form-control" name="detail" rows="3"></textarea>
+                                            <textarea class="form-control" id="detail_case" name="detail" rows="3"></textarea>
                                         </div>
                                     </div>
 
                                 </div>
                                 <div class="row justify-content-center">
                                     <div class="col-sm-8">
-                                        <button type="submit" data-toggle="modal" data-target="#exampleModalCenter"
+                                        <button type="submit" onclick="showModalContactId()" data-toggle="modal"
                                                 name="send" class="btn btn-info ">ส่งข้อมูล
                                         </button>
                                         <button type="submit" class="btn btn-default float-right">ยกเลิก</button>
                                     </div>
                                 </div>
-                            </form>
+
                         </div>
+
+                        <?
+                        include ('modal/case.contact.php');
+                        ?>
 
 
                         <!-- /.card-body -->

@@ -19,11 +19,11 @@ if (!isset($_SESSION['token'])) {
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">แจ้งรายการซ่อมโทรศัพท์</h1>
+                        <h1 class="m-0">ประวัติการการซ่อมโทรศัพท์</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item active">แจ้งรายการซ่อมโทรศัพท์</li>
+                            <li class="breadcrumb-item active">ประวัติการการซ่อมโทรศัพท์</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -52,14 +52,14 @@ if (!isset($_SESSION['token'])) {
                                         <th>ตำแหน่ง</th>
                                         <th>หมายเลขโทรศัพท์</th>
                                         <th>วันที่</th>
-                                        <th>Action</th>
+
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <?php
-                                    $post = $data->findAllCase();
+                                    $post = $data->findAllHistory();
                                     foreach ($post as $result) {
-                                        $id = $result['case_id'];
+                                        $id = $result['history_case_id'];
                                         $status = "";
                                         if ($result['status'] == 0){
                                             $status = "อยู่ระหว่างการซ่อม";
@@ -75,24 +75,7 @@ if (!isset($_SESSION['token'])) {
                                             <td><?php echo $result['rank_case'] ?></td>
                                             <td><?php echo $result['mobileNumber'] ?></td>
                                             <td><?php echo $result['case_date'] ?></td>
-                                            <td>
 
-                                                <button type="button" class="btn btn-primary" onclick="showModalDetailCase(<?php echo $id ?>)" data-toggle="modal" ><i class="far fa-eye"></i>
-                                                </button>
-                                                <?
-                                                if ($_SESSION['id_rank'] == 1 || $_SESSION['id_rank'] == 3) {
-
-                                                    ?>
-                                                    <button type="button" class="btn btn-success" onclick="updateStatusCase(<?php echo $id ?>)"><i
-                                                                class="fas fa-edit"></i>
-                                                    </button>
-                                                    <button type="button" class="btn btn-danger" onclick="deleteCase(<?php echo $id ?>)"><i
-                                                                class="far fa-trash-alt"></i></button>
-                                                    <?
-                                                }
-                                                ?>
-
-                                            </td>
                                         </tr>
                                         <?
                                     }
@@ -113,16 +96,11 @@ if (!isset($_SESSION['token'])) {
         </section>
         <!-- /.content -->
 
-<!--        event popup-->
+        <!--        event popup-->
         <!-- Modal -->
         <!-- Button trigger modal -->
 
         <!-- Modal -->
-       <?
-            include ('modal/case.view.php');
-            include ('modal/case.update.php');
-            include ('modal/case.delete.php');
-       ?>
 
 
     </div>
@@ -131,13 +109,13 @@ if (!isset($_SESSION['token'])) {
 }
 ?>
 
-<script>
-    $(document).ready(function() {
-        $('#view_data').submit(function (){
-            $('#dataModel').modal('show')
-        })
-    });
-</script>
+    <script>
+        $(document).ready(function() {
+            $('#view_data').submit(function (){
+                $('#dataModel').modal('show')
+            })
+        });
+    </script>
 <?php
 include('includes/footer.php');
 ?>

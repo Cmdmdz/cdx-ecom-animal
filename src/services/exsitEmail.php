@@ -1,5 +1,5 @@
 <?php
-include_once('config/function.php');
+include_once('../config/function.php');
 
 $existEmail = new DB_con();
 

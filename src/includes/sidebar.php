@@ -37,7 +37,7 @@
                 <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
 
-<!--                session don't login-->
+                <!--                session don't login-->
                 <?
                 if (!isset($_SESSION['token'])) {
                     ?>
@@ -70,10 +70,44 @@
                 }
                 ?>
 
-<!--                session already login-->
+                <!--                session already login-->
                 <?
                 if (isset($_SESSION['token'])) {
                     ?>
+                    <li class="nav-item">
+                        <a href="../main.php" class="nav-link">
+                            <i class="nav-icon fas fa-list-alt"></i>
+                            <p>
+                                รายการแจ้งซ่อม
+                            </p>
+                        </a>
+                    </li>
+
+                    <?
+                    if ($_SESSION['id_rank'] == 1 || $_SESSION['id_rank'] == 3) {
+
+                        ?>
+                        <li class="nav-item">
+                            <a href="../repairman.php" class="nav-link">
+                                <i class="nav-icon fas fa-list"></i>
+                                <p>
+                                    รายชื่อพนักงาน
+                                </p>
+                            </a>
+                        </li>
+
+                        <?
+                    }
+                    ?>
+                    <li class="nav-item">
+                        <a href="../history.php" class="nav-link">
+                            <i class="nav-icon fas fa-history"></i>
+                            <p>
+                                ประวัติการแจ้งซ่อม
+                            </p>
+                        </a>
+                    </li>
+
                     <li class="nav-item">
                         <a href="../logout.php" class="nav-link">
                             <i class="nav-icon fas fa-sign-out-alt"></i>
