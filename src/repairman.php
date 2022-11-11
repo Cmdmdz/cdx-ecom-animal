@@ -19,7 +19,7 @@ if (!isset($_SESSION['token']) && $_SESSION['id_rank'] == 1) {
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">แจ้งรายการซ่อมโทรศัพท์</h1>
+                        <h1 class="m-0">รายชื่อช่าง</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -57,6 +57,7 @@ if (!isset($_SESSION['token']) && $_SESSION['id_rank'] == 1) {
                                     $rankId = $_SESSION['id_rank'];
                                     $post = $data->findAllRepairman($rankId);
                                     foreach ($post as $result) {
+                                        $repairman_id = $result['id']
                                         ?>
                                         <tr>
                                             <td><?php echo $result['name'] ?></td>
@@ -66,13 +67,14 @@ if (!isset($_SESSION['token']) && $_SESSION['id_rank'] == 1) {
                                             <td>
 
                                                 <button type="button" class="btn btn-primary"><i
-                                                            class="far fa-eye view_data"></i>
+                                                             onclick="showModalRepairman()"
+                                                            class="far fa-eye"></i>
                                                 </button>
-                                                <button type="button" class="btn btn-success"><i
-                                                            class="fas fa-edit"></i>
+                                                <button type="button"  class="btn btn-success"><i
+                                                            onclick="showModalRepairman(14)"     class="fas fa-edit"></i>
                                                 </button>
                                                 <button type="button" class="btn btn-danger"><i
-                                                            class="far fa-trash-alt"></i></button>
+                                                            onclick="showModalRepairman(14)"   class="far fa-trash-alt"></i></button>
 
                                             </td>
                                         </tr>
@@ -83,6 +85,7 @@ if (!isset($_SESSION['token']) && $_SESSION['id_rank'] == 1) {
                                     </tbody>
 
                                 </table>
+                                <button onclick="showModalRepairman()"></button>
                             </div>
                             <!-- /.card-body -->
                         </div>
@@ -93,11 +96,17 @@ if (!isset($_SESSION['token']) && $_SESSION['id_rank'] == 1) {
                 </div>
                 <!-- /.container-fluid -->
         </section>
+        <?
+        include('modal/repairman.view.php');
+
+        ?>
         <!-- /.content -->
     </div>
     <?php
 }
 ?>
+
+
 
 
 <?php

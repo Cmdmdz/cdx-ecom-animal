@@ -41,7 +41,7 @@ class DB_con
 
     public function findCaseById($id)
     {
-        return mysqli_query($this->databaseConnect, "select * from case_repair where case_id = '$id'");
+        return mysqli_query($this->databaseConnect, "select * from case_repair inner join repairman r on case_repair.repairman_id = r.id where case_id = '$id'");
 
     }
 
@@ -64,6 +64,18 @@ class DB_con
         } else {
             return mysqli_query($this->databaseConnect, "select * from repairman inner join `rank` rc on repairman.id_rank = rc.id where rc.id = 2 ORDER BY id_rank ASC");
         }
+    }
+
+    public function findRepairmanById($repairmanId)
+    {
+        return mysqli_query($this->databaseConnect, "select * from repairman inner join `rank` rc on repairman.id_rank = rc.id where repairman.id = '$repairmanId'");
+
+    }
+
+    public function findRepairmanByEmail()
+    {
+        return mysqli_query($this->databaseConnect, "select * from repairman  where email = 'admin@gmail.com'");
+
     }
 
     public function findAllRank()
@@ -90,17 +102,21 @@ class DB_con
         return $array;
     }
 
-    public function createCase($firstName, $lastName, $mobileNumber, $detail, $status, $rank_case_id, $contact_id)
+    public function createCase($firstName, $lastName, $mobileNumber, $detail, $status, $rank_case_id, $contact_id, $repairman_id)
     {
-        mysqli_query($this->databaseConnect, "INSERT INTO `history_case`(`firstName`, `lastName`, `mobileNumber`, `detail_case`, `status`, `rank_case_id`,`contact_id`,`case_date` ) VALUES ('$firstName','$lastName','$mobileNumber','$detail','$status','$rank_case_id','$contact_id', now())");
+        mysqli_query($this->databaseConnect, "INSERT INTO `history_case`(`firstName`, `lastName`, `mobileNumber`, `detail_case`, `status`, `rank_case_id`,`contact_id`,`case_date`  ) VALUES ('$firstName','$lastName','$mobileNumber','$detail','$status','$rank_case_id','$contact_id', now())");
 
-        return mysqli_query($this->databaseConnect, "INSERT INTO `case_repair`(`firstName`, `lastName`, `mobileNumber`, `detail_case`, `status`, `rank_case_id`,`contact_id`,`case_date` ) VALUES ('$firstName','$lastName','$mobileNumber','$detail','$status','$rank_case_id','$contact_id', now())");
+        return mysqli_query($this->databaseConnect, "INSERT INTO `case_repair`(`firstName`, `lastName`, `mobileNumber`, `detail_case`, `status`, `rank_case_id`,`contact_id`,`case_date`, `repairman_id` ) VALUES ('$firstName','$lastName','$mobileNumber','$detail','$status','$rank_case_id','$contact_id', now(), '$repairman_id')");
 
     }
 
     public function findAllHistory()
     {
-        return mysqli_query($this->databaseConnect, "select * from history_case inner join rank_case  on history_case.rank_case_id = rank_case.id ORDER BY rank_case_id ASC, case_date ASC ");
+        return mysqli_query($this->databaseConnect, "select * from history_case inner join rank_case  on history_case.rank_case_id = rank_case.id  ");
+    }
+
+    public function findCaseByRepairmanId($repairmanId){
+        return mysqli_query($this->databaseConnect, "select * from case_repair where repairman_id = '$repairmanId'");
     }
 
     public function generateRandomString($length)

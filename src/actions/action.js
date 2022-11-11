@@ -13,7 +13,7 @@ function showModalDetailCase(val) {
 
     $.ajax({
         type: 'POST',
-        url: 'services/viewCase.php',
+        url: 'services/viewAllCase.php',
         data: 'case_id=' + val,
         success: function (response) {
             $('#dataModel').modal('show')
@@ -102,6 +102,21 @@ function showModalContactId() {
         success: function (response) {
             $('#dataContact').modal('show')
             $('#detail_data').html(response);
+        }
+    });
+}
+
+function showModalRepairman() {
+
+    alert(val)
+
+    $.ajax({
+        type: 'POS',
+        url: 'services/xxxx.php',
+        data: 'repairman_id=' + val,
+        success: function (response) {
+            $('#repairmanView').modal('show')
+            $('#repairman').html(response);
         }
     });
 }
