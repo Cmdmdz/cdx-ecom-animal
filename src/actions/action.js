@@ -9,11 +9,13 @@ function existEmail(val) {
     })
 }
 
+
+
 function showModalDetailCase(val) {
 
     $.ajax({
         type: 'POST',
-        url: 'services/viewAllCase.php',
+        url: 'services/viewCase/viewCase.php',
         data: 'case_id=' + val,
         success: function (response) {
             $('#dataModel').modal('show')
@@ -106,17 +108,19 @@ function showModalContactId() {
     });
 }
 
-function showModalRepairman() {
-
-    alert(val)
+function showModalRepairman(val) {
 
     $.ajax({
-        type: 'POS',
-        url: 'services/xxxx.php',
+        type: 'POST',
+        url: 'services/viewRepairman/viewRepairman.php',
         data: 'repairman_id=' + val,
+        cache: false,
         success: function (response) {
-            $('#repairmanView').modal('show')
-            $('#repairman').html(response);
+            // alert(JSON.stringify(response))
+            $('#repairmanData').modal('show')
+            $('#repairmanView').html(response);
         }
     });
 }
+
+

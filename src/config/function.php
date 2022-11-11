@@ -116,7 +116,15 @@ class DB_con
     }
 
     public function findCaseByRepairmanId($repairmanId){
-        return mysqli_query($this->databaseConnect, "select * from case_repair where repairman_id = '$repairmanId'");
+        $array = array();
+        $result = mysqli_query($this->databaseConnect, "select * from case_repair where repairman_id = '$repairmanId'");
+
+        while ($row = mysqli_fetch_assoc($result)) {
+            $array[] = $row;
+        }
+
+        return $array;
+
     }
 
     public function generateRandomString($length)

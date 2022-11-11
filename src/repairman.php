@@ -67,14 +67,15 @@ if (!isset($_SESSION['token']) && $_SESSION['id_rank'] == 1) {
                                             <td>
 
                                                 <button type="button" class="btn btn-primary"><i
-                                                             onclick="showModalRepairman()"
+                                                            onclick="showModalRepairman(<? echo $repairman_id ?>)"
                                                             class="far fa-eye"></i>
                                                 </button>
-                                                <button type="button"  class="btn btn-success"><i
-                                                            onclick="showModalRepairman(14)"     class="fas fa-edit"></i>
+                                                <button type="button" class="btn btn-success"><i
+                                                            onclick="showModalRepairman(14)" class="fas fa-edit"></i>
                                                 </button>
                                                 <button type="button" class="btn btn-danger"><i
-                                                            onclick="showModalRepairman(14)"   class="far fa-trash-alt"></i></button>
+                                                            onclick="showModalRepairman(14)"
+                                                            class="far fa-trash-alt"></i></button>
 
                                             </td>
                                         </tr>
@@ -85,7 +86,6 @@ if (!isset($_SESSION['token']) && $_SESSION['id_rank'] == 1) {
                                     </tbody>
 
                                 </table>
-                                <button onclick="showModalRepairman()"></button>
                             </div>
                             <!-- /.card-body -->
                         </div>
@@ -105,8 +105,6 @@ if (!isset($_SESSION['token']) && $_SESSION['id_rank'] == 1) {
     <?php
 }
 ?>
-
-
 
 
 <?php
