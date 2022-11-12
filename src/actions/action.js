@@ -116,9 +116,35 @@ function showModalRepairman(val) {
         data: 'repairman_id=' + val,
         cache: false,
         success: function (response) {
-            // alert(JSON.stringify(response))
             $('#repairmanData').modal('show')
             $('#repairmanView').html(response);
+        }
+    });
+}
+
+
+function deleteRepairman(val) {
+
+    $.ajax({
+        type: 'POST',
+        url: 'services/deleteRepairman/deleteRepairman.php',
+        data: 'repairman_id=' + val,
+        success: function (response) {
+            $('#dataDeleteRepairman').modal('show')
+            $('#deleteRepairman').html(response);
+        }
+    });
+}
+
+function deleteRepairmanWhenSubmit() {
+    let repairman_id = $('#repairman_id').val();
+
+    $.ajax({
+        type: 'POST',
+        url: 'services/deleteRepairman/deleteRepairmanSubmit.php',
+        data: 'repairman_id=' + repairman_id,
+        success: function (response) {
+            window.location.href='repairman.php'
         }
     });
 }

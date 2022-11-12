@@ -41,7 +41,7 @@ class DB_con
 
     public function findCaseById($id)
     {
-        return mysqli_query($this->databaseConnect, "select * from case_repair inner join repairman r on case_repair.repairman_id = r.id where case_id = '$id'");
+        return mysqli_query($this->databaseConnect, "select * from case_repair inner join repairman r on case_repair.repairman_id = r.repairman_id where case_id = '$id'");
 
     }
 
@@ -57,6 +57,17 @@ class DB_con
 
     }
 
+    public function deleteRepairmanById($repairman_id)
+    {
+        $query = mysqli_query($this->databaseConnect, "select * from `case_repair` where repairman_id = '$repairman_id'");
+        if (mysqli_num_rows($query) > 0){
+
+            mysqli_query($this->databaseConnect, "UPDATE `case_repair` SET `repairman_id`='17' WHERE repairman_id = '$repairman_id'");
+
+        }
+        return mysqli_query($this->databaseConnect, "DELETE FROM `repairman` WHERE repairman_id = '$repairman_id'");
+    }
+
     public function findAllRepairman($rankId)
     {
         if ($rankId == 3) {
@@ -68,7 +79,7 @@ class DB_con
 
     public function findRepairmanById($repairmanId)
     {
-        return mysqli_query($this->databaseConnect, "select * from repairman inner join `rank` rc on repairman.id_rank = rc.id where repairman.id = '$repairmanId'");
+        return mysqli_query($this->databaseConnect, "select * from repairman inner join `rank` rc on repairman.id_rank = rc.id where repairman.repairman_id = '$repairmanId'");
 
     }
 
@@ -115,7 +126,8 @@ class DB_con
         return mysqli_query($this->databaseConnect, "select * from history_case inner join rank_case  on history_case.rank_case_id = rank_case.id  ");
     }
 
-    public function findCaseByRepairmanId($repairmanId){
+    public function findCaseByRepairmanId($repairmanId)
+    {
         $array = array();
         $result = mysqli_query($this->databaseConnect, "select * from case_repair where repairman_id = '$repairmanId'");
 

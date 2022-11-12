@@ -14,7 +14,7 @@ $result .= "<dev class='table table-responsive'>
 while ($row = mysqli_fetch_array($sql)) {
 
     if ($row['email'] == "admin@gmail.com") {
-        $case_repairman = "อยู่ระหว่างการตรวจสอบ";
+        $case_repairman = "ไม่พบข้อมูล";
     }else{
         $case_repairman = $row['name'];
     }

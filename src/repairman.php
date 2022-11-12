@@ -57,7 +57,7 @@ if (!isset($_SESSION['token']) && $_SESSION['id_rank'] == 1) {
                                     $rankId = $_SESSION['id_rank'];
                                     $post = $data->findAllRepairman($rankId);
                                     foreach ($post as $result) {
-                                        $repairman_id = $result['id']
+                                        $repairman_id = $result['repairman_id']
                                         ?>
                                         <tr>
                                             <td><?php echo $result['name'] ?></td>
@@ -71,10 +71,10 @@ if (!isset($_SESSION['token']) && $_SESSION['id_rank'] == 1) {
                                                             class="far fa-eye"></i>
                                                 </button>
                                                 <button type="button" class="btn btn-success"><i
-                                                            onclick="showModalRepairman(14)" class="fas fa-edit"></i>
+                                                            onclick="deleteRepairman(17)" class="fas fa-edit"></i>
                                                 </button>
                                                 <button type="button" class="btn btn-danger"><i
-                                                            onclick="showModalRepairman(14)"
+                                                            onclick="deleteRepairman(<? echo $repairman_id ?>)"
                                                             class="far fa-trash-alt"></i></button>
 
                                             </td>
@@ -98,7 +98,7 @@ if (!isset($_SESSION['token']) && $_SESSION['id_rank'] == 1) {
         </section>
         <?
         include('modal/repairman.view.php');
-
+        include('modal/repairman.delete.php');
         ?>
         <!-- /.content -->
     </div>
