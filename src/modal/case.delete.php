@@ -11,7 +11,7 @@
             <div class="modal-body " id="delete">
             </div>
             <div class="modal-footer">
-                <button type="button" onclick="deleteCaseWhenSubmit()" class="btn btn-primary">ลบเคสการแจ้งซ่อม</button>
+                <button type="button" onclick="deleteCaseWhenSubmit()" class="btn btn-primary">ยืนยัน</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>

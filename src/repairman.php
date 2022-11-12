@@ -1,6 +1,8 @@
 <?php
 Session_start();
-if (!isset($_SESSION['token']) && $_SESSION['id_rank'] == 1) {
+if (!isset($_SESSION['token'])) {
+    header("location: login.php");
+} else if ($_SESSION['id_rank'] == 2) {
     header("location: login.php");
 } else {
 
@@ -47,7 +49,6 @@ if (!isset($_SESSION['token']) && $_SESSION['id_rank'] == 1) {
                                     <tr>
                                         <th>ชื่อ - นามสกุล</th>
                                         <th>อีเมล</th>
-                                        <th>งาน</th>
                                         <th>ตำแหน่ง</th>
                                         <th>Action</th>
                                     </tr>
@@ -62,7 +63,6 @@ if (!isset($_SESSION['token']) && $_SESSION['id_rank'] == 1) {
                                         <tr>
                                             <td><?php echo $result['name'] ?></td>
                                             <td><?php echo $result['email'] ?></td>
-                                            <td><?php echo $result['contact_id'] ?></td>
                                             <td><?php echo $result['rank'] ?></td>
                                             <td>
 
@@ -71,7 +71,8 @@ if (!isset($_SESSION['token']) && $_SESSION['id_rank'] == 1) {
                                                             class="far fa-eye"></i>
                                                 </button>
                                                 <button type="button" class="btn btn-success"><i
-                                                            onclick="deleteRepairman(17)" class="fas fa-edit"></i>
+                                                            onclick="updateRepairman(<? echo $repairman_id ?>)"
+                                                            class="fas fa-edit"></i>
                                                 </button>
                                                 <button type="button" class="btn btn-danger"><i
                                                             onclick="deleteRepairman(<? echo $repairman_id ?>)"
@@ -99,6 +100,7 @@ if (!isset($_SESSION['token']) && $_SESSION['id_rank'] == 1) {
         <?
         include('modal/repairman.view.php');
         include('modal/repairman.delete.php');
+        include('modal/repairman.update.php');
         ?>
         <!-- /.content -->
     </div>

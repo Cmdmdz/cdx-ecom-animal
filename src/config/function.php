@@ -45,9 +45,15 @@ class DB_con
 
     }
 
-    public function updateStatusCase($id, $status)
+    public function updateStatusCase($id, $status,$repairmanId)
     {
-        return mysqli_query($this->databaseConnect, "UPDATE `case_repair` SET `status`='$status' WHERE case_id = $id");
+        return mysqli_query($this->databaseConnect, "UPDATE `case_repair` SET `status`='$status', repairman_id='$repairmanId' WHERE case_id = '$id'");
+
+    }
+
+    public function updateRepairman($id,$name,$email)
+    {
+        return mysqli_query($this->databaseConnect, "UPDATE `repairman` SET `name`='$name', `email`='$email' WHERE repairman_id = '$id'");
 
     }
 

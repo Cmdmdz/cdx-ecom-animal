@@ -14,6 +14,7 @@ $result .= '<tr>
                 <th>ชื่อ</th>
                 <th>นามสกุล</th>
                 <th>รายละเอียด</th>
+                <th>เบอร์โทรศัพท์</th>
                 <th>หมายเลขติดต่อ</th>
              </tr>';
 
@@ -23,6 +24,7 @@ foreach ($sql as $row) {
     $result .= '<td>' . $row['firstName'] . '</td>';
     $result .= '<td>' . $row['lastName'] . '</td>';
     $result .= '<td>' . $row['detail_case'] . '</td>';
+    $result .= '<td>' . $row['mobileNumber'] . '</td>';
     $result .= '<td>' . $row['contact_id'] . '</td>';
     $result .= '</tr>';
 }

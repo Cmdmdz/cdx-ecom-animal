@@ -5,7 +5,7 @@ $update = new DB_con();
 
 $caseId = $_POST["caseId"];
 $status = $_POST["status"];
-
-$sql = $update->updateStatusCase($caseId, $status);
+$repairmanId = $_POST['repairmanId'];
+$sql = $update->updateStatusCase($caseId, $status,$repairmanId);
 
 ?>

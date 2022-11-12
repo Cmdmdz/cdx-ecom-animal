@@ -10,7 +10,6 @@ function existEmail(val) {
 }
 
 
-
 function showModalDetailCase(val) {
 
     $.ajax({
@@ -41,10 +40,11 @@ function updateStatusCaseWhenSubmit() {
 
     let status = $('#status').val();
     let caseId = $('#case_id').val();
-    // alert();
+    let repairmanId = $('#repairmanId').val();
     let data = {
         status: status,
-        caseId: caseId
+        caseId: caseId,
+        repairmanId: repairmanId
     }
 
     $.ajax({
@@ -52,7 +52,7 @@ function updateStatusCaseWhenSubmit() {
         url: 'services/updateCase/updateCaseSubmit.php',
         data: data,
         success: function (response) {
-            window.location.href='main.php'
+            window.location.href = 'main.php'
         }
     });
 }
@@ -78,7 +78,7 @@ function deleteCaseWhenSubmit() {
         url: 'services/deleteCase/deleteSubmit.php',
         data: 'caseId=' + caseId,
         success: function (response) {
-            window.location.href='main.php'
+            window.location.href = 'main.php'
         }
     });
 }
@@ -91,11 +91,11 @@ function showModalContactId() {
     let detail = $("#detail_case").val();
     let rank_case_id = $("#rank_case_id").val();
     let data = {
-                firstName: firstName,
-                lastName: lastName,
-                mobileNumber: mobileNumber,
-                detail: detail,
-                rank_case_id:rank_case_id
+        firstName: firstName,
+        lastName: lastName,
+        mobileNumber: mobileNumber,
+        detail: detail,
+        rank_case_id: rank_case_id
     }
     $.ajax({
         type: 'POST',
@@ -144,9 +144,45 @@ function deleteRepairmanWhenSubmit() {
         url: 'services/deleteRepairman/deleteRepairmanSubmit.php',
         data: 'repairman_id=' + repairman_id,
         success: function (response) {
-            window.location.href='repairman.php'
+            window.location.href = 'repairman.php'
         }
     });
 }
+
+function updateRepairman(val) {
+
+    $.ajax({
+        type: 'POST',
+        url: 'services/updateRepairman/updateRepairman.php',
+        data: 'repairman_id=' + val,
+        success: function (response) {
+            $('#dataUpdateRepairman').modal('show')
+            $('#updateRepairman').html(response);
+        }
+    });
+}
+
+function updateRepairmanWhenSubmit() {
+
+    let name = $('#nameRepairman').val();
+    let email = $('#emailRepairman').val();
+    let repairmanId = $('#repairmanId').val();
+    let data = {
+        name: name,
+        email: email,
+        repairmanId: repairmanId
+    }
+    // alert(JSON.stringify(data));
+
+    $.ajax({
+        type: 'POST',
+        url: 'services/updateRepairman/updateRepairmanSubmit.php',
+        data: data,
+        success: function (response) {
+            window.location.href = 'repairman.php'
+        }
+    });
+}
+
 
 
