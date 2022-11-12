@@ -13,6 +13,8 @@ if (isset($_SESSION['token'])) {
 
     $data = new DB_con();
 
+    //todo : remove here this login change to use call ajax
+
     if (isset($_POST['login'])) {
 
         $email = $_POST['email'];

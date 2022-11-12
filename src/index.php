@@ -12,28 +12,9 @@ if (isset($_SESSION['token'])) {
 
     <?php
     include_once('config/function.php');
-//
+
     $data = new DB_con();
-//    $contact_id = $data->generateRandomString(10);
-//
-//    if (isset($_POST['send'])) {
-//
-//        $firstname = $_POST['firstname'];
-//        $lastname = $_POST['lastname'];
-//        $mobileNumber = $_POST['mobileNumber'];
-//        $detail = $_POST['detail'];
-//        $rank_case_id = $_POST['rank_case_id'];
-//
-//        $sql = $data->createCase($firstname, $lastname, $mobileNumber, $detail, 0, $rank_case_id, $contact_id);
-//
 
-
-//        if ($sql) {
-//            echo "<script>alert('หมายเลขติดตามการแจ้งซ่อม : $contact_id')</script>";
-//        } else {
-//            echo "<script>alert('Something went wrong Please try again!')</script>";
-//        }
-//    }
     ?>
 
     <!-- Content Wrapper. Contains page content -->
@@ -102,7 +83,6 @@ if (isset($_SESSION['token'])) {
                                             <select class="form-control select2" id="rank_case_id" required name="rank_case_id"
                                                     style="width: 100%;">
                                                 <option selected="selected">-- กรุณาเลือกตำแหน่ง --</option>
-
                                                 <?php
                                                 $post = $data->findAllRankCase();
                                                 foreach ($post as $result) {
@@ -110,7 +90,6 @@ if (isset($_SESSION['token'])) {
                                                     <option value="<?php echo $result['id'] ?>"><?php echo $result['rank_case'] ?></option>
                                                     <?php
                                                 }
-
                                                 ?>
                                             </select>
                                         </div>

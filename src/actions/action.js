@@ -184,5 +184,14 @@ function updateRepairmanWhenSubmit() {
     });
 }
 
+function register(){
+
+}
+
+function login(){
+
+}
+
+
 
 
