@@ -117,7 +117,7 @@ if (isset($_SESSION['token'])) {
                                 </div>
                                 <!-- /.col -->
                                 <div class="col-4">
-                                    <button type="submit" name="submit" id="submit"
+                                    <button type="submit" disabled name="submit" id="submit"
                                             class="btn btn-primary btn-block">
                                         ยืนยัน
                                     </button>

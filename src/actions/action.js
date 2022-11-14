@@ -184,12 +184,24 @@ function updateRepairmanWhenSubmit() {
     });
 }
 
-function register(){
-
-}
-
 function login(){
+    let email = $("#email").val();
+    let password = $("#password").val();
+    let data = {
+        email: email,
+        password: password,
 
+    }
+    $.ajax({
+        type: 'POST',
+        url: 'services/auth/loginService.php',
+        data: data,
+        cache: false,
+        success: function (response) {
+            window.location.href = 'main.php'
+        }
+
+    });
 }
 
 
