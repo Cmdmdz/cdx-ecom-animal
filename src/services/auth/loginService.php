@@ -3,8 +3,6 @@ session_start();
 include_once('../../config/function.php');
 
 $data = new DB_con();
-
-
 $email = $_POST['email'];
 $password = $_POST['password'];
 

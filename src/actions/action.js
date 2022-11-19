@@ -9,6 +9,18 @@ function existEmail(val) {
     })
 }
 
+function noti() {
+    // alert("test")
+    $.ajax({
+        method: 'GET',
+        url: 'services/notification.php',
+        success: function (data) {
+            $('#countNoti').html(data);
+        }
+    })
+}
+
+noti()
 
 function showModalDetailCase(val) {
 
@@ -90,6 +102,7 @@ function showModalContactId() {
     let mobileNumber = $("#mobileNumber").val();
     let detail = $("#detail_case").val();
     let rank_case_id = $("#rank_case_id").val();
+
     let data = {
         firstName: firstName,
         lastName: lastName,
@@ -97,6 +110,7 @@ function showModalContactId() {
         detail: detail,
         rank_case_id: rank_case_id
     }
+
     $.ajax({
         type: 'POST',
         url: 'services/viewContact.php',
@@ -200,7 +214,6 @@ function login(){
         success: function (response) {
             window.location.href = 'main.php'
         }
-
     });
 }
 

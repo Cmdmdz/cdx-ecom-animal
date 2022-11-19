@@ -9,6 +9,7 @@
                 </button>
             </div>
             <div class="modal-body " id="detail_data">
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

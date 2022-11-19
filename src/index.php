@@ -4,7 +4,6 @@ if (isset($_SESSION['token'])) {
     header("location: main.php");
 
 } else {
-
     include('includes/header.php');
     include('includes/sidebar.php');
     include('includes/topbar.php');
@@ -69,25 +68,26 @@ if (isset($_SESSION['token'])) {
                                 </div>
 
                                 <div class="row justify-content-center">
-                                    <div class="col-sm-4">
-                                        <!-- text input -->
-                                        <div class="form-group">
-                                            <label>เบอร์โทรศัพท์</label>
-                                            <input type="text" name="mobileNumber" id="mobileNumber" required class="form-control">
-                                        </div>
+                                        <div class="col-sm-4">
+                                            <!-- text input -->
+                                            <div class="form-group">
+                                                <label>เบอร์โทรศัพท์</label>
+                                                <input type="text" name="mobileNumber" id="mobileNumber" required class="form-control">
+                                            </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <!-- select -->
                                         <label>ตำแหน่ง</label>
                                         <div class="form-group">
+
                                             <select class="form-control select2" id="rank_case_id" required name="rank_case_id"
                                                     style="width: 100%;">
-                                                <option selected="selected">-- กรุณาเลือกตำแหน่ง --</option>
+                                                <option  selected="selected">-- กรุณาเลือกตำแหน่ง --</option>
                                                 <?php
-                                                $post = $data->findAllRankCase();
+                                                $post = $data->findAllListRank();
                                                 foreach ($post as $result) {
                                                     ?>
-                                                    <option value="<?php echo $result['id'] ?>"><?php echo $result['rank_case'] ?></option>
+                                                    <option value="<?php echo $result['list_rank_id'] ?>"><?php echo $result['rank_name'] ?></option>
                                                     <?php
                                                 }
                                                 ?>

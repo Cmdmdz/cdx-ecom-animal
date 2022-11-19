@@ -3,7 +3,6 @@ Session_start();
 if (!isset($_SESSION['token'])) {
     header("location: login.php");
 } else {
-
     include('includes/header.php');
     include('includes/sidebar.php');
     include('includes/topbar.php');
@@ -51,6 +50,7 @@ if (!isset($_SESSION['token'])) {
                                         <th>หมายเลขติดต่อ</th>
                                         <th>ตำแหน่ง</th>
                                         <th>หมายเลขโทรศัพท์</th>
+                                        <th>เลเวล</th>
                                         <th>วันที่</th>
                                         <th>Action</th>
                                     </tr>
@@ -72,25 +72,21 @@ if (!isset($_SESSION['token'])) {
                                             <td><?php echo $result['lastName'] ?></td>
                                             <td><?php echo $status ?></td>
                                             <td><?php echo $result['contact_id'] ?></td>
-                                            <td><?php echo $result['rank_case'] ?></td>
+                                            <td><?php echo $result['rank_name'] ?></td>
                                             <td><?php echo $result['mobileNumber'] ?></td>
+                                            <td><?php echo $result['lv'] ?></td>
                                             <td><?php echo $result['case_date'] ?></td>
                                             <td>
 
                                                 <button type="button" class="btn btn-primary" onclick="showModalDetailCase(<?php echo $id ?>)" data-toggle="modal" ><i class="far fa-eye"></i>
                                                 </button>
-                                                <?
-                                                if ($_SESSION['id_rank'] == 1 || $_SESSION['id_rank'] == 3) {
 
-                                                    ?>
                                                     <button type="button" class="btn btn-success" onclick="updateStatusCase(<?php echo $id ?>)"><i
                                                                 class="fas fa-edit"></i>
                                                     </button>
                                                     <button type="button" class="btn btn-danger" onclick="deleteCase(<?php echo $id ?>)"><i
                                                                 class="far fa-trash-alt"></i></button>
-                                                    <?
-                                                }
-                                                ?>
+
 
                                             </td>
                                         </tr>

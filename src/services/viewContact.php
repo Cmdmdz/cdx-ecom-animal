@@ -8,12 +8,13 @@ $lastname = $_POST['lastName'];
 $mobileNumber = $_POST['mobileNumber'];
 $detail = $_POST['detail'];
 $rank_case_id = $_POST['rank_case_id'];
+
 $contact_id = $data->generateRandomString(10);
 $repairman = $data->findRepairmanByEmail();
 
 
 foreach ($repairman as $result) {
-    $sql = $data->createCase($firstname, $lastname, $mobileNumber, $detail, 0, $rank_case_id, $contact_id, $result['id']);
+    $sql = $data->createCase($firstname, $lastname, $mobileNumber, $detail, 0, $rank_case_id, $contact_id, $result['repairman_id']);
 
 }
 

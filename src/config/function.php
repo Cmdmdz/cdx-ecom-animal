@@ -36,7 +36,7 @@ class DB_con
 
     public function findAllCase()
     {
-        return mysqli_query($this->databaseConnect, "select * from case_repair inner join rank_case  on case_repair.rank_case_id = rank_case.id ORDER BY rank_case_id ASC, case_date ASC ");
+        return mysqli_query($this->databaseConnect, "select * from case_repair inner join listrank  on case_repair.rank_case_id = listrank.list_rank_id ORDER BY lv ASC, case_date DESC ");
     }
 
     public function findCaseById($id)
@@ -45,13 +45,13 @@ class DB_con
 
     }
 
-    public function updateStatusCase($id, $status,$repairmanId)
+    public function updateStatusCase($id, $status, $repairmanId)
     {
         return mysqli_query($this->databaseConnect, "UPDATE `case_repair` SET `status`='$status', repairman_id='$repairmanId' WHERE case_id = '$id'");
 
     }
 
-    public function updateRepairman($id,$name,$email)
+    public function updateRepairman($id, $name, $email)
     {
         return mysqli_query($this->databaseConnect, "UPDATE `repairman` SET `name`='$name', `email`='$email' WHERE repairman_id = '$id'");
 
@@ -59,6 +59,8 @@ class DB_con
 
     public function deleteStatusCaseByCaseId($id)
     {
+        mysqli_query($this->databaseConnect, "DELETE FROM `notification` WHERE case_repair_id = '$id'");
+
         return mysqli_query($this->databaseConnect, "DELETE FROM `case_repair` WHERE case_id = '$id'");
 
     }
@@ -66,7 +68,7 @@ class DB_con
     public function deleteRepairmanById($repairman_id)
     {
         $query = mysqli_query($this->databaseConnect, "select * from `case_repair` where repairman_id = '$repairman_id'");
-        if (mysqli_num_rows($query) > 0){
+        if (mysqli_num_rows($query) > 0) {
 
             mysqli_query($this->databaseConnect, "UPDATE `case_repair` SET `repairman_id`='17' WHERE repairman_id = '$repairman_id'");
 
@@ -121,9 +123,21 @@ class DB_con
 
     public function createCase($firstName, $lastName, $mobileNumber, $detail, $status, $rank_case_id, $contact_id, $repairman_id)
     {
-        mysqli_query($this->databaseConnect, "INSERT INTO `history_case`(`firstName`, `lastName`, `mobileNumber`, `detail_case`, `status`, `rank_case_id`,`contact_id`,`case_date`  ) VALUES ('$firstName','$lastName','$mobileNumber','$detail','$status','$rank_case_id','$contact_id', now())");
 
-        return mysqli_query($this->databaseConnect, "INSERT INTO `case_repair`(`firstName`, `lastName`, `mobileNumber`, `detail_case`, `status`, `rank_case_id`,`contact_id`,`case_date`, `repairman_id` ) VALUES ('$firstName','$lastName','$mobileNumber','$detail','$status','$rank_case_id','$contact_id', now(), '$repairman_id')");
+
+        mysqli_query($this->databaseConnect, "INSERT INTO `case_repair`(`firstName`, `lastName`, `mobileNumber`, `detail_case`, `status`, `rank_case_id`,`contact_id`,`case_date`, `repairman_id` ) VALUES ('$firstName','$lastName','$mobileNumber','$detail','$status','$rank_case_id','$contact_id', now(), '$repairman_id')");
+
+        $result = mysqli_query($this->databaseConnect, "select * from case_repair where contact_id = '$contact_id'");
+
+        if (mysqli_num_rows($result) > 0) {
+            foreach ($result as $row) {
+                $caseId = $row['case_id'];
+                mysqli_query($this->databaseConnect, "insert into notification(noti_status, case_repair_id) VALUES (0,'$caseId')");
+
+            }
+        }
+
+        return mysqli_query($this->databaseConnect, "INSERT INTO `history_case`(`firstName`, `lastName`, `mobileNumber`, `detail_case`, `status`, `rank_case_id`,`contact_id`,`case_date`  ) VALUES ('$firstName','$lastName','$mobileNumber','$detail','$status','$rank_case_id','$contact_id', now())");
 
     }
 
@@ -145,6 +159,12 @@ class DB_con
 
     }
 
+    public function countNoti()
+    {
+        return mysqli_query($this->databaseConnect, "select * from notification inner join case_repair cr on notification.case_repair_id = cr.case_id");
+    }
+
+
     public function generateRandomString($length)
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -156,6 +176,11 @@ class DB_con
         return $randomString;
     }
 
+    public function findAllListRank()
+    {
+        return mysqli_query($this->databaseConnect, "select * from listrank");
+
+    }
 
 }
 
