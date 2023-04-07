@@ -15,7 +15,7 @@
 <!--                <img src="assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">-->
             </div>
             <div class="info">
-                <a href="#" class="d-block">ระบบแจ้งซ่อมโทรศัพท์</a>
+                <!-- <a href="#" class="d-block">ระบบแจ้งซ่อมโทรศัพท์</a> -->
             </div>
         </div>
 
@@ -31,14 +31,7 @@
                 <?
                 if (!isset($_SESSION['token'])) {
                     ?>
-                    <li class="nav-item">
-                        <a href="index.php" class="nav-link">
-                            <i class="nav-icon fas fa-edit"></i>
-                            <p>
-                                แจ้งรายการซ่อมโทรศัพท์
-                            </p>
-                        </a>
-                    </li>
+                 
                     <li class="nav-item">
                         <a href="../login.php" class="nav-link">
                             <i class="nav-icon fas fa-user"></i>

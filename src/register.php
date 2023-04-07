@@ -40,7 +40,6 @@ if (isset($_SESSION['token'])) {
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="index.php">แจ้งรายการซ่อมโทรศัพท์</a></li>
                             <li class="breadcrumb-item active">ลงทะเบียนเข้าสู่ระบบ</li>
                         </ol>
                     </div><!-- /.col -->
